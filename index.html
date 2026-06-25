@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ruota delle Emozioni Interattiva — Soluzioni PDF</title>
+<meta name="description" content="Strumento interattivo gratuito per nominare con precisione quello che senti. Sei emozioni primarie, trenta sfumature secondarie, oltre cento terziarie. Basato sui modelli di Plutchik, Wilcox e Junto.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,500;1,700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    /* Brand palette — Soluzioni PDF (from site CSS) */
+    --bg:#FBFBF3;
+    --bg-warm:#F4F4F1;
+    --bg-card:#FFFFFF;
+    --ink:#2E2F2B;
+    --ink-soft:#4A4B45;
+    --muted:#6E6F6A;
+    --muted-soft:#9FA09D;
+    --line:#D5D0C4;
+    --line-strong:#C9BEA9;
+    --line-warm:#A8865E4D;
+    --accent:#A8865E;
+    --accent-dark:#7E6543;
+    --accent-soft:#A8865E14;
+    --accent-bg:#F0E8D8;
+    /* Cluster emotion colors — derived from Soluzioni PDF brand palette */
+    --c-gioia:#A8865E;
+    --c-tristezza:#528596;
+    --c-paura:#8B6E94;
+    --c-rabbia:#9B5343;
+    --c-sorpresa:#66A38D;
+    --c-disgusto:#4A6850;
+    /* Type */
+    --serif:'Playfair Display','Cormorant Garamond',Georgia,'Times New Roman',serif;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Arial,sans-serif;
+    /* Easings */
+    --ease-out:cubic-bezier(.16,1,.3,1);
+    --ease-in-out:cubic-bezier(.65,0,.35,1);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:var(--sans);
+    background:var(--bg);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.55;
+    min-height:100vh;
+    text-rendering:optimizeLegibility;
+  }
+  /* Shell */
+  #ruota-app{
+    max-width:1180px;
+    margin:0 auto;
+    padding:48px 32px 56px;
+  }
+  @media(max-width:720px){#ruota-app{padding:28px 18px 40px}}
+  /* Brand header */
+  .rde-brand{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    margin-bottom:48px;
+    padding-bottom:22px;
+    border-bottom:1px solid var(--line);
+  }
+  .rde-brand-mark{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    color:var(--ink);
+  }
+  .rde-brand-mark .mark-circle{
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:var(--ink);
+    color:var(--bg);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:var(--serif);
+    font-weight:700;
+    font-style:italic;
+    font-size:18px;
+    letter-spacing:-.02em;
+  }
+  .rde-brand-name{
+    display:flex;
+    flex-direction:column;
+    line-height:1.1;
+  }
+  .rde-brand-name strong{
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:17px;
+    letter-spacing:-.005em;
+  }
+  .rde-brand-name span{
+    font-family:var(--sans);
+    font-size:10.5px;
+    color:var(--muted);
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    margin-top:2px;
+  }
+  .rde-brand-cta{
+    font-family:var(--sans);
+    font-size:13px;
+    color:var(--ink);
+    text-decoration:none;
+    padding:9px 16px;
+    border:1px solid var(--line-strong);
+    border-radius:999px;
+    transition:background .25s var(--ease-out),color .25s,border-color .25s;
+    white-space:nowrap;
+    font-weight:500;
+  }
+  .rde-brand-cta:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  @media(max-width:540px){.rde-brand-cta{display:none}}
+  /* Hero */
+  .rde-hero{
+    margin-bottom:44px;
+    max-width:780px;
+  }
+  .rde-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:var(--sans);
+    font-size:11px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--accent-dark);
+    font-weight:600;
+    margin-bottom:18px;
+  }
+  .rde-eyebrow::before{
+    content:'';
+    width:18px;height:1px;
+    background:var(--accent);
+    display:inline-block;
+  }
+  .rde-title{
+    font-family:var(--serif);
+    font-size:clamp(36px,5.5vw,58px);
+    line-height:1.02;
+    font-weight:800;
+    letter-spacing:-.02em;
+    margin:0 0 16px;
+    color:var(--ink);
+  }
+  .rde-title em{
+    font-style:italic;
+    font-weight:500;
+    color:var(--accent);
+  }
+  .rde-lede{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(17px,2.2vw,21px);
+    line-height:1.5;
+    color:var(--ink-soft);
+    margin:0;
+    max-width:640px;
+  }
+  /* Layout main */
+  .rde-main{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:36px;
+    align-items:start;
+  }
+  @media(min-width:900px){
+    .rde-main{grid-template-columns:minmax(0,1fr) 360px;gap:48px}
+  }
+  /* Stage */
+  .rde-stage{
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:36px 28px 40px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:22px;
+    min-height:520px;
+    box-shadow:0 1px 0 #2E2F2B07, 0 24px 48px -28px #2E2F2B1F;
+    position:relative;
+  }
+  @media(max-width:540px){.rde-stage{padding:24px 16px 28px}}
+  /* Nav breadcrumb */
+  .rde-nav{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px;
+    align-self:flex-start;
+    font-family:var(--sans);
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--muted);
+    min-height:22px;
+    width:100%;
+  }
+  .rde-back{
+    background:transparent;
+    border:none;
+    color:var(--muted);
+    font-family:inherit;
+    font-size:inherit;
+    letter-spacing:inherit;
+    text-transform:inherit;
+    cursor:pointer;
+    padding:5px 10px;
+    margin-left:-10px;
+    border-radius:6px;
+    transition:color .25s,background .25s;
+    font-weight:500;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .rde-back:hover{color:var(--ink);background:var(--accent-soft)}
+  .rde-back svg{width:11px;height:11px}
+  .rde-crumb-sep{color:var(--muted-soft)}
+  .rde-crumb{color:var(--ink);font-weight:600}
+  /* Prompt */
+  .rde-prompt{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(20px,2.6vw,24px);
+    color:var(--ink);
+    text-align:center;
+    margin:0 0 4px;
+    max-width:560px;
+    line-height:1.3;
+    letter-spacing:-.005em;
+  }
+  .rde-prompt em{font-style:italic;font-weight:700}
+  /* Primary SVG wheel */
+  .rde-wheel-wrap{
+    position:relative;
+    width:min(460px,92vw);
+    aspect-ratio:1;
+    margin:8px auto;
+  }
+  .rde-wheel-svg{
+    width:100%;
+    height:100%;
+    overflow:visible;
+    filter:drop-shadow(0 12px 32px #2E2F2B1A);
+  }
+  .rde-sector{
+    cursor:pointer;
+    transition:opacity .35s var(--ease-out),transform .35s var(--ease-out);
+    transform-origin:50px 50px;
+  }
+  .rde-sector:hover{transform:scale(1.04);filter:brightness(1.06)}
+  .rde-sector:hover ~ .rde-sector,
+  .rde-sector:has(~.rde-sector:hover){opacity:.5}
+  .rde-sector text{
+    pointer-events:none;
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:4.2px;
+    fill:#fff;
+    letter-spacing:.015em;
+  }
+  .rde-wheel-center{
+    position:absolute;
+    top:50%;left:50%;
+    width:30%;
+    aspect-ratio:1;
+    transform:translate(-50%,-50%);
+    background:var(--bg-card);
+    border-radius:50%;
+    border:1px solid var(--line);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:14px;
+    text-align:center;
+    pointer-events:none;
+    box-shadow:0 4px 14px #2E2F2B14;
+  }
+  .rde-wheel-center-eyebrow{
+    font-family:var(--sans);
+    font-size:9px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:4px;
+  }
+  .rde-wheel-center-text{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:600;
+    font-size:clamp(14px,1.8vw,17px);
+    color:var(--ink);
+    line-height:1.15;
+  }
+  /* Secondary level */
+  .rde-sec-header{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:14px;
+    margin-bottom:10px;
+  }
+  .rde-chip-primary{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--c);
+    color:#fff;
+    padding:8px 18px 8px 8px;
+    border-radius:999px;
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:16px;
+    letter-spacing:-.005em;
+    box-shadow:0 4px 14px #2E2F2B18;
+  }
+  .rde-chip-primary::before{
+    content:'';
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    background:rgba(255,255,255,.22);
+  }
+  .rde-sec-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+    gap:12px;
+    width:100%;
+    max-width:600px;
+  }
+  .rde-sec-btn{
+    background:var(--bg-warm);
+    border:1px solid transparent;
+    border-left:3px solid var(--c);
+    padding:20px 18px;
+    border-radius:10px;
+    text-align:left;
+    font-family:var(--serif);
+    font-size:18px;
+    font-weight:700;
+    color:var(--ink);
+    cursor:pointer;
+    transition:transform .25s var(--ease-out),box-shadow .25s var(--ease-out),background .25s,border-color .25s;
+    line-height:1.2;
+    letter-spacing:-.005em;
+  }
+  .rde-sec-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 28px -8px #2E2F2B2A;
+    background:var(--bg-card);
+    border-color:var(--c)40;
+  }
+  .rde-sec-btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+  /* Tertiary level */
+  .rde-ter-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(155px,1fr));
+    gap:10px;
+    width:100%;
+    max-width:600px;
+  }
+  .rde-ter-btn{
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-left:3px solid var(--c);
+    padding:14px 16px;
+    border-radius:8px;
+    text-align:left;
+    font-family:var(--serif);
+    font-size:16px;
+    font-weight:600;
+    color:var(--ink);
+    cursor:pointer;
+    transition:transform .2s var(--ease-out),box-shadow .2s var(--ease-out),background .2s;
+    line-height:1.25;
+    letter-spacing:-.003em;
+  }
+  .rde-ter-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px -6px #2E2F2B1F;
+    background:#FFFEFB;
+  }
+  .rde-ter-btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+  .rde-ter-btn.selected{
+    background:var(--bg-card);
+    border-color:var(--c);
+    box-shadow:0 0 0 3px var(--c)24, 0 6px 18px -4px #2E2F2B1F;
+    transform:translateY(-2px);
+  }
+  /* Detail panel */
+  .rde-detail{
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:28px 26px 24px;
+    position:sticky;
+    top:24px;
+    box-shadow:0 1px 0 #2E2F2B07, 0 24px 48px -28px #2E2F2B1F;
+  }
+  @media(max-width:899px){.rde-detail{position:static}}
+  /* Empty state with mini wheel illustration */
+  .rde-empty{
+    text-align:center;
+  }
+  .rde-empty-illu{
+    width:80px;
+    height:80px;
+    margin:6px auto 18px;
+    opacity:.85;
+  }
+  .rde-empty-illu circle{
+    animation:slowSpin 40s linear infinite;
+    transform-origin:50% 50%;
+  }
+  @keyframes slowSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+  .rde-empty-label{
+    display:block;
+    font-family:var(--sans);
+    font-weight:600;
+    color:var(--accent-dark);
+    font-size:10.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    margin-bottom:10px;
+  }
+  .rde-empty-text{
+    color:var(--ink-soft);
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:500;
+    font-size:15.5px;
+    line-height:1.55;
+    margin:0;
+  }
+  /* Filled detail */
+  .rde-path{
+    font-family:var(--sans);
+    font-size:10.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent-dark);
+    margin:0 0 10px;
+    font-weight:600;
+  }
+  .rde-name{
+    font-family:var(--serif);
+    font-size:clamp(26px,3.6vw,32px);
+    font-weight:800;
+    line-height:1.05;
+    letter-spacing:-.015em;
+    margin:0 0 14px;
+  }
+  .rde-def{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:500;
+    font-size:17px;
+    line-height:1.55;
+    color:var(--ink-soft);
+    margin:0 0 20px;
+  }
+  .rde-prompt-box{
+    background:var(--accent-bg);
+    border:1px solid var(--line-warm);
+    border-radius:10px;
+    padding:16px 18px 14px;
+    margin-bottom:16px;
+    position:relative;
+  }
+  .rde-prompt-box::before{
+    content:'"';
+    position:absolute;
+    top:-14px;
+    left:14px;
+    background:var(--bg-card);
+    padding:0 6px;
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:28px;
+    color:var(--accent);
+    line-height:1;
+  }
+  .rde-prompt-label{
+    font-family:var(--sans);
+    font-size:10px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent-dark);
+    margin:0 0 8px;
+    font-weight:600;
+  }
+  .rde-prompt-text{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:500;
+    font-size:17px;
+    line-height:1.5;
+    color:var(--ink);
+    margin:0 0 10px;
+  }
+  .rde-prompt-input{
+    width:100%;
+    min-height:64px;
+    background:var(--bg-card);
+    border:1px solid var(--line-strong);
+    border-radius:8px;
+    padding:12px 14px;
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:500;
+    font-size:16px;
+    line-height:1.5;
+    color:var(--ink);
+    resize:vertical;
+    transition:border-color .2s,box-shadow .2s;
+    display:block;
+    box-sizing:border-box;
+    font-variant-ligatures:common-ligatures;
+  }
+  .rde-prompt-input::placeholder{
+    color:var(--muted-soft);
+    font-style:italic;
+    opacity:.7;
+  }
+  .rde-prompt-input:focus{
+    outline:none;
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px var(--accent-soft);
+    background:#FFFEFB;
+  }
+  .rde-copy{
+    background:var(--ink);
+    color:var(--bg);
+    border:none;
+    padding:13px 18px;
+    border-radius:8px;
+    font-family:var(--sans);
+    font-size:12px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    cursor:pointer;
+    width:100%;
+    transition:background .25s,transform .15s;
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+  }
+  .rde-copy:hover{background:#0F0E0A;transform:translateY(-1px)}
+  .rde-copy:active{transform:translateY(0)}
+  .rde-copy.copied{background:var(--accent)}
+  .rde-copy svg{width:14px;height:14px}
+  /* Science callout */
+  .rde-science{
+    margin-top:22px;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+  }
+  .rde-science strong{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:var(--sans);
+    font-weight:600;
+    color:var(--accent-dark);
+    font-size:10.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .rde-science strong::before{
+    content:'';
+    width:14px;
+    height:1px;
+    background:var(--accent);
+  }
+  .rde-science p{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:500;
+    font-size:14px;
+    line-height:1.55;
+    color:var(--muted);
+    margin:0;
+  }
+  /* Promo CTA card */
+  .rde-promo{
+    margin-top:36px;
+    background:var(--ink);
+    color:var(--bg);
+    border-radius:18px;
+    padding:36px 32px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:24px;
+    align-items:center;
+    box-shadow:0 24px 48px -28px #2E2F2B;
+  }
+  @media(max-width:720px){.rde-promo{grid-template-columns:1fr;text-align:center;padding:30px 24px}}
+  .rde-promo-eyebrow{
+    font-family:var(--sans);
+    font-size:11px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  .rde-promo-title{
+    font-family:var(--serif);
+    font-size:clamp(22px,3vw,28px);
+    font-weight:700;
+    line-height:1.15;
+    letter-spacing:-.01em;
+    margin:0 0 10px;
+  }
+  .rde-promo-title em{font-style:italic;color:var(--accent)}
+  .rde-promo-text{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:500;
+    font-size:16px;
+    line-height:1.5;
+    color:#E5DFD2;
+    margin:0;
+    max-width:540px;
+  }
+  .rde-promo-btn{
+    background:var(--accent);
+    color:var(--ink);
+    text-decoration:none;
+    padding:14px 24px;
+    border-radius:999px;
+    font-family:var(--sans);
+    font-size:13px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    font-weight:600;
+    white-space:nowrap;
+    transition:background .25s,transform .15s;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .rde-promo-btn:hover{background:#D4A968;transform:translateY(-2px)}
+  .rde-promo-btn svg{width:13px;height:13px}
+  /* Footer */
+  .rde-foot{
+    margin-top:36px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    align-items:flex-start;
+    font-family:var(--sans);
+    font-size:12px;
+    color:var(--muted);
+    line-height:1.55;
+  }
+  .rde-foot a{
+    color:var(--ink);
+    text-decoration:none;
+    border-bottom:1px solid var(--accent);
+    padding-bottom:1px;
+    transition:color .25s;
+  }
+  .rde-foot a:hover{color:var(--accent-dark)}
+  .rde-foot-attr{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:14px;
+    color:var(--ink-soft);
+    margin-bottom:4px;
+  }
+  /* Animations */
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  .rde-stage>*{animation:fadeUp .4s var(--ease-out) both}
+  .rde-stage>*:nth-child(2){animation-delay:.04s}
+  .rde-stage>*:nth-child(3){animation-delay:.08s}
+  .rde-stage>*:nth-child(4){animation-delay:.12s}
+  /* Mobile fine-tuning */
+  @media(max-width:540px){
+    .rde-brand{margin-bottom:32px;padding-bottom:18px}
+    .rde-hero{margin-bottom:30px}
+    .rde-eyebrow{margin-bottom:12px}
+    .rde-promo{margin-top:28px}
+  }
+</style>
+</head>
+<body>
+<div id="ruota-app">
+  <!-- Brand header -->
+  <header class="rde-brand">
+    <a class="rde-brand-mark" href="https://soluzionipdf.it" target="_blank" rel="noopener">
+      <span class="mark-circle">S</span>
+      <span class="rde-brand-name">
+        <strong>Soluzioni PDF</strong>
+        <span>Crescita personale · Scienza · Pratica</span>
+      </span>
+    </a>
+    <a class="rde-brand-cta" href="https://soluzionipdf.it/collections/all" target="_blank" rel="noopener">Esplora le guide →</a>
+  </header>
+  <!-- Hero -->
+  <section class="rde-hero">
+    <div class="rde-eyebrow">Strumento interattivo · Intelligenza emotiva</div>
+    <h1 class="rde-title">La ruota <em>delle emozioni</em></h1>
+    <p class="rde-lede">Sei emozioni primarie, trenta sfumature secondarie, oltre cento terziarie. Tocca, scopri, nomina con precisione quello che senti — e ricevi una frase da copiare per il tuo diario emotivo.</p>
+  </section>
+  <!-- Main -->
+  <main class="rde-main">
+    <section class="rde-stage" id="stage" aria-live="polite"></section>
+    <aside class="rde-detail" id="detail" aria-live="polite">
+      <div class="rde-empty" id="empty">
+        <svg class="rde-empty-illu" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="50" cy="50" r="38" fill="none" stroke="#A8865E" stroke-width="0.8" stroke-dasharray="2 4"/>
+          <circle cx="50" cy="50" r="22" fill="none" stroke="#A8865E" stroke-width="0.6"/>
+          <circle cx="50" cy="50" r="6" fill="#A8865E"/>
+          <circle cx="50" cy="12" r="3.2" fill="#A8865E"/>
+          <circle cx="83" cy="32" r="3.2" fill="#8B6E94"/>
+          <circle cx="83" cy="68" r="3.2" fill="#66A38D"/>
+          <circle cx="50" cy="88" r="3.2" fill="#528596"/>
+          <circle cx="17" cy="68" r="3.2" fill="#4A6850"/>
+          <circle cx="17" cy="32" r="3.2" fill="#9B5343"/>
+        </svg>
+        <span class="rde-empty-label">Come si usa</span>
+        <p class="rde-empty-text">Tocca un'emozione primaria sulla ruota. Si aprirà il livello successivo, fino alla sfumatura più precisa.</p>
+        <div class="rde-science">
+          <strong>La scienza dietro</strong>
+          <p>Lo studio fMRI di Matthew Lieberman (UCLA, Psychological Science 2007) ha mostrato che nominare un'emozione attiva la corteccia prefrontale e riduce l'attivazione dell'amigdala. Mettere parole alle emozioni è già regolazione.</p>
+        </div>
+      </div>
+    </aside>
+  </main>
+  <!-- Promo CTA -->
+  <section class="rde-promo">
+    <div>
+      <div class="rde-promo-eyebrow">Guida pratica · 36 fonti peer-reviewed</div>
+      <h2 class="rde-promo-title">Vuoi un percorso strutturato per <em>allenare il vocabolario emotivo?</em></h2>
+      <p class="rde-promo-text">La ruota stampabile, i 3 modelli scientifici, l'affect labeling, l'alessitimia, le tecniche di regolazione (RAIN, name-it-to-tame-it) — tutto in una guida PDF di 30 minuti di lettura.</p>
+    </div>
+    <a class="rde-promo-btn" href="https://soluzionipdf.it/products/intelligenza-emotiva" target="_blank" rel="noopener">
+      Scopri la guida
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </section>
+  <!-- Footer -->
+  <footer class="rde-foot">
+    <span class="rde-foot-attr">Strumento gratuito di <a href="https://soluzionipdf.it" target="_blank" rel="noopener">Soluzioni PDF</a> · realizzato per essere incorporato liberamente</span>
+    <span>Modelli scientifici: Plutchik (1980) · Geneva Emotion Wheel (Scherer) · Junto/Wilcox Emotion Wheel. Affect labeling: Lieberman, UCLA 2007. Strumento divulgativo: non sostituisce il parere di uno psicologo.</span>
+  </footer>
+</div>
+<script>
+const RDE_DATA = {
+  gioia:{label:"Gioia",hex:"#A8865E",sec:{
+    contentezza:{label:"Contentezza",ter:[
+      {n:"Serenità",d:"Uno stato calmo e pacifico, senza tensione interna.",p:"Oggi mi sento serena perché"},
+      {n:"Soddisfazione",d:"Senso di pienezza per qualcosa che hai fatto o vissuto.",p:"Mi sento soddisfatta di"},
+      {n:"Appagamento",d:"La sensazione che ciò che hai sia sufficiente.",p:"Provo appagamento quando"},
+      {n:"Quiete",d:"Una calma interiore profonda e leggera.",p:"Sento quiete nel momento in cui"},
+      {n:"Gratitudine quieta",d:"Riconoscimento silenzioso per ciò che c'è.",p:"Sono grata per"}
+    ]},
+    eccitazione:{label:"Eccitazione",ter:[
+      {n:"Entusiasmo",d:"Energia diretta verso qualcosa che ti attiva.",p:"Mi sento entusiasta di"},
+      {n:"Euforia",d:"Un'allegria alta e intensa, quasi vibrante.",p:"Sono euforica perché"},
+      {n:"Vivacità",d:"Una pienezza energetica leggera e mobile.",p:"Oggi mi sento viva quando"},
+      {n:"Esaltazione",d:"Un'emozione alta che ti porta sopra le righe.",p:"Mi sento esaltata da"},
+      {n:"Curiosità",d:"Il desiderio di esplorare, scoprire, capire.",p:"Mi incuriosisce"}
+    ]},
+    gratitudine:{label:"Gratitudine",ter:[
+      {n:"Riconoscenza",d:"Sentirsi grata verso qualcuno per qualcosa di concreto.",p:"Sono riconoscente verso"},
+      {n:"Devozione",d:"Un legame profondo che dà valore a chi ami.",p:"Mi sento devota a"},
+      {n:"Apprezzamento",d:"Notare e valorizzare ciò che spesso si dà per scontato.",p:"Apprezzo che"},
+      {n:"Senso di fortuna",d:"Riconoscere che molto ti è stato dato senza meriti.",p:"Mi sento fortunata perché"},
+      {n:"Calore",d:"Una tenerezza diffusa verso qualcuno o qualcosa.",p:"Sento calore quando"}
+    ]},
+    orgoglio:{label:"Orgoglio",ter:[
+      {n:"Fierezza",d:"Stare in piedi dentro di sé per ciò che si è fatto.",p:"Sono fiera di"},
+      {n:"Senso di valore",d:"Sentire che quello che fai conta.",p:"Mi sento di valore quando"},
+      {n:"Autostima",d:"Una stima di te basata su ciò che hai dimostrato.",p:"Sento autostima nel modo in cui"},
+      {n:"Compiacimento",d:"Una piccola soddisfazione interna che ti scalda.",p:"Mi compiaccio di"},
+      {n:"Capacità",d:"La sensazione di essere all'altezza di un compito.",p:"Mi sento capace di"}
+    ]},
+    amore:{label:"Amore",ter:[
+      {n:"Tenerezza",d:"Un affetto morbido che si posa con cura sull'altro.",p:"Provo tenerezza per"},
+      {n:"Affetto",d:"Un legame caldo e familiare, vissuto come casa.",p:"Mi sento legata a"},
+      {n:"Adorazione",d:"Una stima amorosa che vede l'altro luminoso.",p:"Adoro come"},
+      {n:"Appartenenza",d:"Sentire di essere parte di qualcuno o qualcosa.",p:"Mi sento parte di"},
+      {n:"Compassione",d:"Aprire il cuore alla sofferenza altrui senza giudizio.",p:"Sento compassione per"}
+    ]}
+  }},
+  tristezza:{label:"Tristezza",hex:"#528596",sec:{
+    solitudine:{label:"Solitudine",ter:[
+      {n:"Trascurata",d:"Sentirsi messa in disparte da chi dovrebbe vederti.",p:"Mi sento trascurata quando"},
+      {n:"Isolata",d:"Una distanza interiore dagli altri, anche quando sono vicini.",p:"Mi sento isolata perché"},
+      {n:"Esclusa",d:"Non far parte di un cerchio in cui vorresti essere.",p:"Mi sono sentita esclusa da"},
+      {n:"Abbandonata",d:"Avere la sensazione che qualcuno se ne sia andato.",p:"Mi sento abbandonata da"},
+      {n:"Ignorata",d:"Esserci ma non venire vista o ascoltata.",p:"Mi sento ignorata quando"}
+    ]},
+    vulnerabilita:{label:"Vulnerabilità",ter:[
+      {n:"Fragile",d:"Sentirti facilmente ferita, con la pelle sottile.",p:"Oggi mi sento fragile perché"},
+      {n:"Esposta",d:"Sentirsi senza protezione di fronte agli altri.",p:"Mi sento esposta quando"},
+      {n:"Indifesa",d:"Non avere le risorse per proteggerti.",p:"Mi sento indifesa di fronte a"},
+      {n:"Sensibile",d:"Cogliere ogni piccolo segnale come se entrasse troppo.",p:"Mi sento sensibile a"},
+      {n:"Scoperta",d:"Sentirsi senza filtri di fronte a qualcuno.",p:"Mi sento scoperta davanti a"}
+    ]},
+    disperazione:{label:"Disperazione",ter:[
+      {n:"Senza speranza",d:"L'impressione che nulla possa cambiare.",p:"Sento che non ho speranza riguardo a"},
+      {n:"Devastata",d:"Una rottura interiore che ti lascia svuotata.",p:"Sono devastata perché"},
+      {n:"Abbattuta",d:"Una pesantezza che ti tira giù lo sguardo.",p:"Mi sento abbattuta per"},
+      {n:"Scoraggiata",d:"Sentire che lo sforzo non basta più.",p:"Mi sento scoraggiata di fronte a"},
+      {n:"Distrutta",d:"Sentirsi finita dopo qualcosa di troppo grande.",p:"Mi sento distrutta da"}
+    ]},
+    colpa:{label:"Senso di colpa",ter:[
+      {n:"In colpa",d:"Sentire di aver fatto qualcosa che ferisce qualcuno.",p:"Mi sento in colpa per"},
+      {n:"Vergognosa",d:"Una colpa che riguarda chi sei, non solo ciò che hai fatto.",p:"Mi vergogno di"},
+      {n:"Rimorso",d:"Una colpa che ti torna ciclicamente.",p:"Provo rimorso ogni volta che penso a"},
+      {n:"Pentita",d:"Vorresti tornare indietro su qualcosa di specifico.",p:"Sono pentita di"},
+      {n:"Dispiaciuta",d:"Un dispiacere morbido per qualcosa che è andato così.",p:"Mi dispiace che"}
+    ]},
+    delusione:{label:"Delusione",ter:[
+      {n:"Delusa",d:"Aspettativa caduta, qualcosa non era come pensavi.",p:"Sono delusa da"},
+      {n:"Amareggiata",d:"Una delusione che lascia un retrogusto persistente.",p:"Mi sono amareggiata quando"},
+      {n:"Sconfortata",d:"Una stanchezza che viene da troppe delusioni.",p:"Mi sento sconfortata perché"},
+      {n:"Demoralizzata",d:"Aver perso lo slancio dopo una delusione.",p:"Mi sento demoralizzata su"},
+      {n:"Scontenta",d:"Una insoddisfazione diffusa difficile da indicare.",p:"Sono scontenta di"}
+    ]}
+  }},
+  paura:{label:"Paura",hex:"#8B6E94",sec:{
+    ansia:{label:"Ansia",ter:[
+      {n:"Tesa",d:"Il corpo che resta in allerta anche senza un motivo chiaro.",p:"Mi sento tesa quando"},
+      {n:"Agitata",d:"Un movimento interno che non si placa.",p:"Sento agitazione pensando a"},
+      {n:"Preoccupata",d:"La mente che gira attorno a qualcosa che potrebbe andare male.",p:"Sono preoccupata che"},
+      {n:"Nervosa",d:"Una piccola scintilla che parte facilmente.",p:"Mi sento nervosa per"},
+      {n:"Allarmata",d:"Essere in modalità sentinella, pronta a reagire.",p:"Mi sento allarmata quando"}
+    ]},
+    spavento:{label:"Spavento",ter:[
+      {n:"Terrorizzata",d:"Una paura grande che blocca corpo e respiro.",p:"Sono terrorizzata da"},
+      {n:"Intimorita",d:"Una paura più piccola, un po' rispettosa.",p:"Mi sento intimorita di fronte a"},
+      {n:"Panico",d:"Onda di paura intensa, fisica, travolgente.",p:"Sento panico quando"},
+      {n:"Atterrita",d:"Paralisi da paura: niente entra, niente esce.",p:"Mi sento atterrita all'idea di"},
+      {n:"In allerta",d:"Una paura cauta che ti tiene a distanza.",p:"Sono in allerta verso"}
+    ]},
+    insicurezza:{label:"Insicurezza",ter:[
+      {n:"Incerta",d:"Non sapere quale direzione prendere.",p:"Mi sento incerta su"},
+      {n:"Esitante",d:"Trattenerti sull'orlo della scelta.",p:"Esito quando devo"},
+      {n:"Dubbiosa",d:"Riguardare e riguardare la stessa cosa.",p:"Ho dubbi su"},
+      {n:"Sfiduciata",d:"Non credere abbastanza in te o negli altri.",p:"Mi sento sfiduciata riguardo a"},
+      {n:"Instabile",d:"Sentirsi muovere da un'emozione all'altra senza centro.",p:"Mi sento instabile quando"}
+    ]},
+    inadeguatezza:{label:"Inadeguatezza",ter:[
+      {n:"Inferiore",d:"Sentirsi sotto agli altri in valore.",p:"Mi sento inferiore quando"},
+      {n:"Incapace",d:"Sentire di non avere quello che serve per riuscire.",p:"Mi sento incapace di"},
+      {n:"Insufficiente",d:"Sentire che ciò che dai non basta.",p:"Mi sento insufficiente quando"},
+      {n:"Fallita",d:"Sentirsi sotto un'aspettativa che non hai raggiunto.",p:"Mi sento fallita perché"},
+      {n:"Sopraffatta",d:"Sentire che tutto pesa più di quanto puoi reggere.",p:"Mi sento sopraffatta da"}
+    ]},
+    vergogna:{label:"Vergogna",ter:[
+      {n:"Mortificata",d:"Una vergogna acuta dopo qualcosa di esposto.",p:"Mi sento mortificata per"},
+      {n:"Umiliata",d:"Quando qualcuno ti riduce davanti agli altri.",p:"Mi sono sentita umiliata da"},
+      {n:"In imbarazzo",d:"Una vergogna sociale, leggera ma visibile.",p:"Provo imbarazzo quando"},
+      {n:"Esposta",d:"Sentire che tutti vedono ciò che vorresti nascondere.",p:"Mi sento esposta quando"},
+      {n:"Ridicolizzata",d:"Sentire che qualcuno ride di te, non con te.",p:"Mi sento ridicolizzata quando"}
+    ]}
+  }},
+  rabbia:{label:"Rabbia",hex:"#9B5343",sec:{
+    frustrazione:{label:"Frustrazione",ter:[
+      {n:"Frustrata",d:"Qualcosa ti blocca e non puoi fare quello che vorresti.",p:"Sono frustrata perché"},
+      {n:"Bloccata",d:"Sentirsi ferma di fronte a un ostacolo invisibile.",p:"Mi sento bloccata su"},
+      {n:"Ostacolata",d:"Sentire che qualcuno o qualcosa ti rallenta.",p:"Mi sento ostacolata da"},
+      {n:"Esasperata",d:"Una frustrazione che ha raggiunto il limite.",p:"Sono esasperata da"},
+      {n:"Impotente",d:"Non avere modo di cambiare ciò che ti sta succedendo.",p:"Mi sento impotente di fronte a"}
+    ]},
+    irritazione:{label:"Irritazione",ter:[
+      {n:"Infastidita",d:"Una piccola scintilla che ti graffia internamente.",p:"Mi infastidisce che"},
+      {n:"Scocciata",d:"Una irritazione di superficie, leggera e mobile.",p:"Sono scocciata per"},
+      {n:"Contrariata",d:"Quando qualcosa va contro le tue aspettative.",p:"Mi sento contrariata da"},
+      {n:"Stizzita",d:"Una rabbia piccola, immediata, momentanea.",p:"Mi sono stizzita quando"},
+      {n:"Spazientita",d:"Quando l'attesa o la lentezza ti riempie.",p:"Mi sento spazientita davanti a"}
+    ]},
+    indignazione:{label:"Indignazione",ter:[
+      {n:"Oltraggiata",d:"Una rabbia morale di fronte a un'ingiustizia.",p:"Mi sento oltraggiata da"},
+      {n:"Scandalizzata",d:"Stupore indignato per qualcosa che non doveva essere.",p:"Sono scandalizzata da"},
+      {n:"Sdegnata",d:"Disapprovazione fredda e netta.",p:"Provo sdegno verso"},
+      {n:"Offesa",d:"Sentirsi colpita dove vali.",p:"Mi sono offesa quando"},
+      {n:"Tradita",d:"Quando chi ti era vicino ha rotto la fiducia.",p:"Mi sento tradita da"}
+    ]},
+    risentimento:{label:"Risentimento",ter:[
+      {n:"Rancorosa",d:"Una rabbia trattenuta che torna nel tempo.",p:"Sento rancore verso"},
+      {n:"Ostile",d:"Sentirti chiusa, in difesa contro qualcuno.",p:"Mi sento ostile verso"},
+      {n:"Gelosa",d:"Paura che ciò che hai ti venga tolto.",p:"Mi sento gelosa di"},
+      {n:"Invidiosa",d:"Desiderio di ciò che ha qualcun altro.",p:"Provo invidia per"},
+      {n:"Amareggiata",d:"Un risentimento che si è sedimentato.",p:"Sono amareggiata con"}
+    ]},
+    furia:{label:"Furia",ter:[
+      {n:"Infuriata",d:"Rabbia grande, calda, che chiede di uscire.",p:"Sono infuriata perché"},
+      {n:"Esplosiva",d:"L'energia rabbiosa che salta fuori senza filtro.",p:"Mi sento esplosiva quando"},
+      {n:"Accecata",d:"Quando la rabbia copre il pensiero lucido.",p:"Mi sento accecata da"},
+      {n:"Fuori di sé",d:"Sentirsi presa da una forza più grande di te.",p:"Mi sono sentita fuori di me quando"},
+      {n:"Fredda",d:"Una rabbia ghiacciata, controllata ma intensa.",p:"Sento una rabbia fredda verso"}
+    ]}
+  }},
+  sorpresa:{label:"Sorpresa",hex:"#66A38D",sec:{
+    stupore:{label:"Stupore",ter:[
+      {n:"Meravigliata",d:"Una sorpresa luminosa di fronte a qualcosa di bello.",p:"Mi sono meravigliata di"},
+      {n:"Stupita",d:"Una sorpresa neutra, che apre gli occhi.",p:"Mi sono stupita perché"},
+      {n:"Attonita",d:"Una sorpresa che ti blocca, senza parole.",p:"Sono rimasta attonita davanti a"},
+      {n:"Incredula",d:"Faticare a credere a ciò che hai visto o sentito.",p:"Sono incredula che"},
+      {n:"Sbalordita",d:"Sorpresa grande, fuori scala.",p:"Sono sbalordita da"}
+    ]},
+    confusione:{label:"Confusione",ter:[
+      {n:"Disorientata",d:"Quando perdi i tuoi riferimenti abituali.",p:"Mi sento disorientata da"},
+      {n:"Perplessa",d:"Qualcosa non torna ma non capisci ancora cosa.",p:"Sono perplessa riguardo a"},
+      {n:"Smarrita",d:"Una confusione più ampia che riguarda la direzione.",p:"Mi sento smarrita su"},
+      {n:"Indecisa",d:"Tra due opzioni che pesano allo stesso modo.",p:"Sono indecisa tra"},
+      {n:"Esitante",d:"Tirarti indietro all'ultimo dalla scelta.",p:"Esito quando devo"}
+    ]},
+    eccitamento:{label:"Eccitamento",ter:[
+      {n:"Entusiasta",d:"Sorpresa che si trasforma in energia attiva.",p:"Mi sento entusiasta di"},
+      {n:"Elettrizzata",d:"Una sorpresa che ti accende il corpo.",p:"Sono elettrizzata per"},
+      {n:"Vivace",d:"Quando un evento ti ha riempito di vita.",p:"Mi sento vivace dopo"},
+      {n:"Su di giri",d:"Energia di sorpresa che spinge in avanti.",p:"Sono su di giri perché"},
+      {n:"Esaltata",d:"Sorpresa che ti porta in alto.",p:"Mi sento esaltata da"}
+    ]},
+    spaesamento:{label:"Spaesamento",ter:[
+      {n:"Scossa",d:"Una sorpresa che ti ha mosso dentro.",p:"Sono scossa da"},
+      {n:"Presa alla sprovvista",d:"Quando un evento arriva prima che tu sia pronta.",p:"Mi ha colta di sorpresa"},
+      {n:"Sussultata",d:"Un piccolo scatto fisico di sorpresa.",p:"Ho sussultato quando"},
+      {n:"Spaventata d'improvviso",d:"Una sorpresa che si è trasformata in paura breve.",p:"Mi sono spaventata quando"},
+      {n:"Spaesata",d:"Senza punti di riferimento dopo un cambiamento.",p:"Mi sento spaesata in"}
+    ]},
+    costernazione:{label:"Costernazione",ter:[
+      {n:"Costernata",d:"Sorpresa dolorosa di fronte a qualcosa di grave.",p:"Sono costernata da"},
+      {n:"Sconcertata",d:"Sorpresa che non riesci ancora a integrare.",p:"Mi sento sconcertata da"},
+      {n:"Sbigottita",d:"Quando una notizia ti lascia senza fiato.",p:"Sono sbigottita perché"},
+      {n:"Allibita",d:"Una sorpresa che mescola incredulità e indignazione.",p:"Sono allibita davanti a"},
+      {n:"Sgomenta",d:"Una sorpresa pesante che porta paura e tristezza insieme.",p:"Sento sgomento per"}
+    ]}
+  }},
+  disgusto:{label:"Disgusto",hex:"#4A6850",sec:{
+    repulsione:{label:"Repulsione",ter:[
+      {n:"Nauseata",d:"Una reazione di rifiuto fisico forte.",p:"Mi sento nauseata da"},
+      {n:"Schifata",d:"Repulsione netta, immediata.",p:"Mi schifa che"},
+      {n:"Ripugnata",d:"Quando qualcosa va contro un tuo valore profondo.",p:"Mi ripugna"},
+      {n:"Inorridita",d:"Sorpresa più disgusto: qualcosa è troppo.",p:"Sono inorridita da"},
+      {n:"Avversa",d:"Una distanza netta e fredda da qualcosa.",p:"Provo avversione per"}
+    ]},
+    disapprovazione:{label:"Disapprovazione",ter:[
+      {n:"Contraria",d:"Una disapprovazione argomentata e ferma.",p:"Sono contraria a"},
+      {n:"Dissenziente",d:"Non essere d'accordo, anche civilmente.",p:"Dissento su"},
+      {n:"Critica",d:"Vedere qualcosa con sguardo analitico e severo.",p:"Sono critica verso"},
+      {n:"Biasimevole",d:"Pensare che qualcosa meriti riprovazione.",p:"Biasimo che"},
+      {n:"Riprovevole",d:"Considerare qualcosa moralmente sbagliato.",p:"Trovo riprovevole che"}
+    ]},
+    diffidenza:{label:"Diffidenza",ter:[
+      {n:"Sospettosa",d:"Sentire che qualcosa non torna sotto la superficie.",p:"Sospetto che"},
+      {n:"Dubbiosa",d:"Mettere in dubbio le intenzioni altrui.",p:"Ho dubbi su"},
+      {n:"Scettica",d:"Non credere alle promesse senza prove.",p:"Sono scettica su"},
+      {n:"Sfiduciata",d:"Aver perso fiducia in qualcuno.",p:"Non mi fido più di"},
+      {n:"Prudente",d:"Tenere una distanza protettiva.",p:"Sto in guardia con"}
+    ]},
+    stanchezza:{label:"Stanchezza",ter:[
+      {n:"Esausta",d:"Una stanchezza che il sonno non guarisce.",p:"Mi sento esausta da"},
+      {n:"Sopraffatta",d:"Quando il troppo ha sommerso le tue risorse.",p:"Mi sento sopraffatta da"},
+      {n:"Prosciugata",d:"Una stanchezza che ha portato via anche la voglia.",p:"Mi sento prosciugata dopo"},
+      {n:"Allo stremo",d:"Aver dato l'ultima riserva.",p:"Sono allo stremo per"},
+      {n:"Satura",d:"Una stanchezza piena, di chi ha visto troppo.",p:"Mi sento satura di"}
+    ]},
+    insoddisfazione:{label:"Insoddisfazione",ter:[
+      {n:"Insoddisfatta",d:"Avere ciò che hai e non sentirlo abbastanza.",p:"Mi sento insoddisfatta di"},
+      {n:"Stufata",d:"Aver superato la soglia di tolleranza.",p:"Sono stufa di"},
+      {n:"Annoiata",d:"Quando ciò che vivi non ti accende più.",p:"Mi annoia"},
+      {n:"Apatica",d:"Quando niente sembra valere la pena.",p:"Mi sento apatica davanti a"},
+      {n:"Distante",d:"Sentirsi staccata da quello che ti circonda.",p:"Mi sento distante da"}
+    ]}
+  }}
+};
+
+const stage = document.getElementById('stage');
+const detail = document.getElementById('detail');
+const emptyDetail = document.getElementById('empty');
+
+function resetDetail(){
+  detail.innerHTML = '';
+  detail.appendChild(emptyDetail);
+}
+
+const ICON_ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>';
+const ICON_COPY = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+const ICON_CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+
+function renderPrimary(){
+  const primaries = Object.keys(RDE_DATA);
+  const n = primaries.length;
+  const cx=50, cy=50, rOuter=46, rInner=18;
+  let sectors = '';
+  primaries.forEach((key, i) => {
+    const e = RDE_DATA[key];
+    const a0 = (-90 + (360/n)*i - 90/n) * Math.PI/180;
+    const a1 = (-90 + (360/n)*(i+1) - 90/n) * Math.PI/180;
+    const aMid = (a0+a1)/2;
+    const x0o = cx + rOuter*Math.cos(a0);
+    const y0o = cy + rOuter*Math.sin(a0);
+    const x1o = cx + rOuter*Math.cos(a1);
+    const y1o = cy + rOuter*Math.sin(a1);
+    const x0i = cx + rInner*Math.cos(a0);
+    const y0i = cy + rInner*Math.sin(a0);
+    const x1i = cx + rInner*Math.cos(a1);
+    const y1i = cy + rInner*Math.sin(a1);
+    const largeArc = ((a1-a0) > Math.PI) ? 1 : 0;
+    const d = `M ${x0o.toFixed(2)} ${y0o.toFixed(2)} A ${rOuter} ${rOuter} 0 ${largeArc} 1 ${x1o.toFixed(2)} ${y1o.toFixed(2)} L ${x1i.toFixed(2)} ${y1i.toFixed(2)} A ${rInner} ${rInner} 0 ${largeArc} 0 ${x0i.toFixed(2)} ${y0i.toFixed(2)} Z`;
+    const rLabel = (rOuter + rInner)/2;
+    const lx = cx + rLabel*Math.cos(aMid);
+    const ly = cy + rLabel*Math.sin(aMid);
+    sectors += `<g class="rde-sector" data-key="${key}" tabindex="0" role="button" aria-label="Emozione primaria: ${e.label}">
+      <path d="${d}" fill="${e.hex}" stroke="#FBFBF3" stroke-width="0.8"/>
+      <text x="${lx.toFixed(2)}" y="${ly.toFixed(2)}" text-anchor="middle" dominant-baseline="middle">${e.label}</text>
+    </g>`;
+  });
+  stage.innerHTML = `
+    <div class="rde-nav"><span class="rde-crumb">Inizia qui — scegli un'emozione</span></div>
+    <p class="rde-prompt">Come ti senti, <em>adesso</em>?</p>
+    <div class="rde-wheel-wrap">
+      <svg class="rde-wheel-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Ruota delle emozioni primarie">${sectors}</svg>
+      <div class="rde-wheel-center">
+        <span class="rde-wheel-center-eyebrow">6 emozioni</span>
+        <span class="rde-wheel-center-text">Tocca per iniziare</span>
+      </div>
+    </div>
+  `;
+  stage.querySelectorAll('.rde-sector').forEach(g => {
+    g.addEventListener('click', () => renderSecondary(g.dataset.key));
+    g.addEventListener('keydown', (ev) => {
+      if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();renderSecondary(g.dataset.key);}
+    });
+  });
+  resetDetail();
+}
+
+function renderSecondary(primaryKey){
+  const e = RDE_DATA[primaryKey];
+  stage.innerHTML = `
+    <div class="rde-nav">
+      <button class="rde-back" id="back">${ICON_ARROW}<span>Indietro</span></button>
+      <span class="rde-crumb-sep">·</span>
+      <span class="rde-crumb">${e.label}</span>
+    </div>
+    <p class="rde-prompt">Dentro <em style="color:${e.hex}">${e.label.toLowerCase()}</em>, qual è la sfumatura più vicina?</p>
+    <div class="rde-sec-header">
+      <span class="rde-chip-primary" style="--c:${e.hex}">${e.label}</span>
+    </div>
+    <div class="rde-sec-grid" id="sec-grid"></div>
+  `;
+  const grid = document.getElementById('sec-grid');
+  Object.keys(e.sec).forEach(sk => {
+    const s = e.sec[sk];
+    const btn = document.createElement('button');
+    btn.className = 'rde-sec-btn';
+    btn.style.setProperty('--c', e.hex);
+    btn.textContent = s.label;
+    btn.setAttribute('aria-label', `${e.label}: ${s.label}`);
+    btn.addEventListener('click', () => renderTertiary(primaryKey, sk));
+    grid.appendChild(btn);
+  });
+  document.getElementById('back').addEventListener('click', renderPrimary);
+  resetDetail();
+}
+
+function renderTertiary(primaryKey, secKey){
+  const e = RDE_DATA[primaryKey];
+  const s = e.sec[secKey];
+  stage.innerHTML = `
+    <div class="rde-nav">
+      <button class="rde-back" id="back">${ICON_ARROW}<span>Indietro</span></button>
+      <span class="rde-crumb-sep">·</span>
+      <span>${e.label}</span>
+      <span class="rde-crumb-sep">·</span>
+      <span class="rde-crumb">${s.label}</span>
+    </div>
+    <p class="rde-prompt">Quale di queste descrive meglio <em style="color:${e.hex}">${s.label.toLowerCase()}</em> per te?</p>
+    <div class="rde-ter-grid" id="ter-grid"></div>
+  `;
+  const grid = document.getElementById('ter-grid');
+  s.ter.forEach((t, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'rde-ter-btn';
+    btn.style.setProperty('--c', e.hex);
+    btn.textContent = t.n;
+    btn.setAttribute('aria-label', `Sfumatura: ${t.n}`);
+    btn.addEventListener('click', () => {
+      grid.querySelectorAll('.rde-ter-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      showDetail(primaryKey, secKey, i);
+    });
+    grid.appendChild(btn);
+  });
+  document.getElementById('back').addEventListener('click', () => renderSecondary(primaryKey));
+  resetDetail();
+}
+
+function showDetail(primaryKey, secKey, idx){
+  const e = RDE_DATA[primaryKey];
+  const s = e.sec[secKey];
+  const t = s.ter[idx];
+  detail.innerHTML = `
+    <p class="rde-path">${e.label} · ${s.label}</p>
+    <h2 class="rde-name" style="color:${e.hex}">${t.n}</h2>
+    <p class="rde-def">${t.d}</p>
+    <div class="rde-prompt-box">
+      <p class="rde-prompt-label">Per il diario emotivo</p>
+      <p class="rde-prompt-text">${t.p}…</p>
+      <textarea class="rde-prompt-input" id="diary-input" placeholder="Completa qui — scrivi quello che senti, in libertà" rows="2" aria-label="Completa la frase per il diario emotivo"></textarea>
+    </div>
+    <button class="rde-copy" id="copy-btn" type="button">${ICON_COPY}<span>Copia la frase</span></button>
+    <div class="rde-science">
+      <strong>La scienza dietro</strong>
+      <p>Lo studio fMRI di Lieberman (UCLA, 2007) ha mostrato che mettere parole alle emozioni riduce l'attivazione dell'amigdala e attiva la corteccia prefrontale. Nominare è già regolare.</p>
+    </div>
+  `;
+  const btn = document.getElementById('copy-btn');
+  const input = document.getElementById('diary-input');
+  // Auto-resize textarea as user types
+  const autoResize = () => { input.style.height='auto'; input.style.height = Math.max(64, input.scrollHeight) + 'px'; };
+  input.addEventListener('input', autoResize);
+  btn.addEventListener('click', () => {
+    const userText = input.value.trim();
+    const text = userText ? `${t.p} ${userText}` : `${t.p} __________`;
+    const setCopied = () => {
+      btn.innerHTML = `${ICON_CHECK}<span>${userText ? 'Frase copiata' : 'Modello copiato'}</span>`;
+      btn.classList.add('copied');
+      setTimeout(() => { btn.innerHTML = `${ICON_COPY}<span>Copia la frase</span>`; btn.classList.remove('copied'); }, 2200);
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(setCopied).catch(fallback);
+    } else { fallback(); }
+    function fallback(){
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); setCopied(); } catch(e){}
+      document.body.removeChild(ta);
+    }
+  });
+}
+
+renderPrimary();
+</script>
+</body>
+</html>
